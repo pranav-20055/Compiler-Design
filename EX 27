@@ -1,0 +1,51 @@
+%%
+[A-Z]+[\t\n ] { printf("%s is a capital word\n",yytext); }
+.  ;
+%%
+
+int main( ) 
+{
+	printf("Enter String :\n");
+	yylex();
+}
+int yywrap( )
+{
+	return 1;
+}
+
+Output:
+
+G:\lex>flex capital.l
+
+G:\lex>gcc lex.yy.c
+
+G:\lex>a.exe
+Enter String :
+CAPITAL of INDIA is DELHI
+CAPITAL  is a capital word
+INDIA  is a capital word
+DELHI
+ is a capital word
+
+G:\lex>
+
+Exp. No. 28
+Write a LEX Program to check the email address is valid or not.
+Program: (email_valid.l)
+%{
+int flag=0;
+%}
+%%
+[a-z . 0-9]+@[a-z]+".com"|".in" { flag=1; }
+%%
+int main()
+{
+yylex();
+if(flag==1)
+printf("Accepted");
+else
+printf("Not Accepted");
+}
+int yywrap()
+{ return 1;
+ }
